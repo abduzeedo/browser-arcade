@@ -8,7 +8,9 @@ Click **LOAD ROM**, choose a file from your computer, select its console when au
 
 Supports Genesis / Mega Drive, NES, SNES, Game Boy / Game Boy Color, Game Boy Advance, Master System, and Game Gear. ZIP and BIN files require manual console selection.
 
-Use the directional pad or arrow keys; X, Z, and S correspond to B, A, and C; Enter is START and V is SELECT. On-screen controls work with mouse or touch. Per-system mappings, save states, and display options are available in the emulator toolbar.
+Use the directional pad or arrow keys; X, Z, and S correspond to B, A, and C; Enter is START and V is SELECT. On-screen controls work with mouse or touch. Click **KEYS** to rebind the console controls. Select a control, press a key, and the change saves automatically in browser storage. Duplicate assignments are rejected; Escape cancels a key change and RESTORE DEFAULTS resets the mapping. These bindings work with focus in the console or game screen. Additional per-system controls, save states, and display options are available in the emulator toolbar.
+
+On phones and narrow screens, the console fills the page without the desktop background, outer margins, or casing shadow. The EmulatorJS credit remains inside the console.
 
 Selected game files are read locally and passed to the emulator using a browser object URL. They are not uploaded to a server. Game files are not included in this repository or deployment.
 
