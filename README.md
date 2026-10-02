@@ -14,6 +14,8 @@ On phones and narrow screens, the console fits the dynamic viewport without page
 
 Selected game files are read locally and passed to the emulator using a browser object URL. They are not uploaded to a server. Game files are not included in this repository or deployment.
 
+The circular **◐** button next to arcade.01 switches between dark and light themes. Dark is the initial theme; your choice is saved on the device.
+
 ## Local preview
 
 From this directory:
