@@ -1,0 +1,27 @@
+# Game files must never be committed.
+roms/
+*.gen
+*.md
+!README.md
+!data/SOURCES.md
+!data/UPSTREAM-README.md
+*.smd
+*.bin
+*.nes
+*.sfc
+*.smc
+*.gb
+*.gbc
+*.gba
+*.sms
+*.gg
+*.zip
+*.7z
+*.iso
+*.cue
+*.chd
+
+# Local files
+.DS_Store
+node_modules/
+*-preview.jpg

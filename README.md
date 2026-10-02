@@ -1,0 +1,35 @@
+# Browser Arcade
+
+A portable-console interface for playing local game files in the browser, powered by EmulatorJS 4.2.3. No ROMs or BIOS files are included.
+
+## Play
+
+Click **LOAD ROM**, choose a file from your computer, select its console when automatic detection is unavailable, and click **INSERT & PLAY**. Click Start Game in the screen or press the console START button to boot.
+
+Supports Genesis / Mega Drive, NES, SNES, Game Boy / Game Boy Color, Game Boy Advance, Master System, and Game Gear. ZIP and BIN files require manual console selection.
+
+Use the directional pad or arrow keys; X, Z, and S correspond to B, A, and C; Enter is START and V is SELECT. On-screen controls work with mouse or touch. Per-system mappings, save states, and display options are available in the emulator toolbar.
+
+Selected game files are read locally and passed to the emulator using a browser object URL. They are not uploaded to a server. Game files are not included in this repository or deployment.
+
+## Local preview
+
+From this directory:
+
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+Open http://127.0.0.1:8000/. Serve over HTTP rather than opening the HTML file directly.
+
+## GitHub Pages
+
+Publish the `main` branch from `/ (root)` under Settings → Pages → Deploy from a branch. The `.nojekyll` file serves the bundled files directly. No build step is required. All emulator assets use paths relative to the page so project URLs work.
+
+The ROM exclusions in `.gitignore` are a safeguard. Always inspect staged files before pushing, and never commit ROMs or BIOS files.
+
+## Bundled software
+
+`data/` includes EmulatorJS 4.2.3 and the selected default and WebGL 1 fallback cores. Keep the bundled license and attribution files. See [upstream sources](data/SOURCES.md), [EmulatorJS license](data/LICENSE), and [upstream README](data/UPSTREAM-README.md).
+
+The on-screen input bridge uses the pinned EmulatorJS controller API; verify it when upgrading EmulatorJS. Emulation and performance vary by device and browser.
