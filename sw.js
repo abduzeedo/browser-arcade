@@ -1,5 +1,6 @@
-const CACHE='arcade-app-v1';
+const CACHE='arcade-app-v2';
 const ASSETS=[
+  "./controls-core.js",
   "./",
   "./index.html",
   "./manifest.webmanifest",
@@ -41,7 +42,7 @@ const allowed=new Set(ASSETS.map(path=>new URL(path,self.registration.scope).hre
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)))});
 self.addEventListener('activate',event=>{event.waitUntil((async()=>{for(const key of await caches.keys())if(key.startsWith('arcade-app-')&&key!==CACHE)await caches.delete(key);await self.clients.claim()})())});
 self.addEventListener('fetch',event=>{const request=event.request,url=new URL(request.url);if(request.method!=='GET'||url.origin!==self.location.origin||!url.href.startsWith(self.registration.scope))return;
- if(request.mode==='navigate'){event.respondWith((async()=>{try{const response=await fetch(request);if(response.ok){const cache=await caches.open(CACHE);await cache.put(new URL('./index.html',self.registration.scope),response.clone());return response}}catch{}return (await caches.match(new URL('./index.html',self.registration.scope)))||Response.error()})());return}
+ if(request.mode==='navigate'&&(url.pathname===new URL('./',self.registration.scope).pathname||url.pathname===new URL('./index.html',self.registration.scope).pathname)){event.respondWith((async()=>{try{const response=await fetch(request);if(response.ok)return response}catch{}return (await caches.match(new URL('./index.html',self.registration.scope)))||Response.error()})());return}
  if(!allowed.has(url.href))return;
  event.respondWith((async()=>{const cached=await caches.match(request);if(cached)return cached;const response=await fetch(request);if(response.ok){const cache=await caches.open(CACHE);await cache.put(request,response.clone())}return response})())
 });

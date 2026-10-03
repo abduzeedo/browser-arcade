@@ -8,9 +8,9 @@ Click **LOAD ROM**, choose a file from your computer, select its console when au
 
 Supports Genesis / Mega Drive, NES, SNES, Game Boy / Game Boy Color, Game Boy Advance, Master System, and Game Gear. ZIP and BIN files require manual console selection.
 
-Use the directional pad or arrow keys; X, Z, and S correspond to B, A, and C; Enter is START and V is SELECT. On-screen controls work with mouse or touch. Click **KEYS** to rebind the console controls. Select a control, press a key, and the change saves automatically in browser storage. Duplicate assignments are rejected; Escape cancels a key change and RESTORE DEFAULTS resets the mapping. These bindings work with focus in the console or game screen. Additional per-system controls, save states, and display options are available in the emulator toolbar.
+Use the directional pad or arrow keys; X, Z, and S correspond to B, A, and C; Enter is START and V is SELECT. On-screen controls work with mouse or touch. Hold and slide anywhere across the D-pad to change direction; corner zones press both axes for diagonals. The center is a dead zone. D-pad and action buttons support simultaneous fingers without one release cancelling another input. Long-press selection and callouts are disabled on the console. Click **KEYS** to rebind the console controls. Select a control, press a key, and the change saves automatically in browser storage. Duplicate assignments are rejected; Escape cancels a key change and RESTORE DEFAULTS resets the mapping. These bindings work with focus in the console or game screen. Additional per-system controls, save states, and display options are available in the emulator toolbar.
 
-On phones and narrow screens, the console fits the dynamic viewport without page scrolling, the desktop background, outer margins, or casing shadow. iOS home-screen mode reserves the status-bar and home-indicator safe areas; the header compacts on shorter screens. Dialogs may scroll internally when necessary. The EmulatorJS credit remains inside the console.
+On phones and narrow screens, the console fits the dynamic viewport without page scrolling, the desktop background, outer margins, or casing shadow. iOS home-screen mode reserves the status-bar and home-indicator safe areas, plus 16 px above the top bar; its height refreshes on launch, resize, and rotation, with a 100vh fallback. The header compacts on shorter screens. Dialogs may scroll internally when necessary. The EmulatorJS credit remains inside the console.
 
 Selected game files are read locally and passed to the emulator using a browser object URL. They are not uploaded to a server. Game files are not included in this repository or deployment.
 
@@ -24,7 +24,9 @@ Open the app online once and wait for **Offline ready** in KEYS. The service wor
 
 KEYS includes **Button sounds** and **Touch vibration** preferences, saved on the device. The interface synthesizes a quiet click with Web Audio after interaction; game audio remains under the emulator's own volume control. Short vibration pulses are enabled only when `navigator.vibrate` is supported. Safari/iOS does not expose that API, including in standalone mode; the option is disabled there. No simulated vibration workaround is used.
 
-The service worker caches an explicit list of app assets. To change cached runtime files or icons, bump the `CACHE` version in `sw.js` and update `ASSETS` as needed. Updates wait until existing app windows close so a running game is not interrupted. App navigation checks the network first and falls back to the cached page.
+The service worker caches an explicit list of app assets. To change cached runtime files or icons, bump the `CACHE` version in `sw.js` and update `ASSETS` as needed. Updates wait until existing app windows close so a running game is not interrupted. App navigation checks the network first and falls back to the installed cached page. Only the two app entry URLs receive this navigation fallback.
+
+Run `node --test tests/controls.test.cjs` to check the D-pad direction zones, sliding transitions, and overlapping input sources.
 
 The original generated icon and its built-in imagegen prompt are saved under `icons/`; favicon, Apple touch, and manifest PNG sizes are derived from that master.
 
