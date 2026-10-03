@@ -16,6 +16,18 @@ Selected game files are read locally and passed to the emulator using a browser 
 
 The small toggle on the right of the top bar switches between dark and light themes. Dark is the initial theme; your choice is saved on the device.
 
+## PWA, offline play, and feedback
+
+Add the site to your home screen using Safari → Share → Add to Home Screen on iOS, or your browser's Install app option where available. The manifest launches the app in standalone mode and supplies regular, maskable, and Apple touch icons. If an existing home-screen shortcut keeps its old icon, remove that shortcut and add it again.
+
+Open the app online once and wait for **Offline ready** in KEYS. The service worker caches the console and all bundled emulator cores (about 13 MB). The app can then launch and emulate local ROM files offline. ROMs are never put in the app cache or uploaded; select your local file each time. Browser storage eviction or clearing site data requires the software to download again. Save states are managed separately by EmulatorJS.
+
+KEYS includes **Button sounds** and **Touch vibration** preferences, saved on the device. The interface synthesizes a quiet click with Web Audio after interaction; game audio remains under the emulator's own volume control. Short vibration pulses are enabled only when `navigator.vibrate` is supported. Safari/iOS does not expose that API, including in standalone mode; the option is disabled there. No simulated vibration workaround is used.
+
+The service worker caches an explicit list of app assets. To change cached runtime files or icons, bump the `CACHE` version in `sw.js` and update `ASSETS` as needed. Updates wait until existing app windows close so a running game is not interrupted. App navigation checks the network first and falls back to the cached page.
+
+The original generated icon and its built-in imagegen prompt are saved under `icons/`; favicon, Apple touch, and manifest PNG sizes are derived from that master.
+
 ## Local preview
 
 From this directory:
