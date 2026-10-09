@@ -26,6 +26,8 @@ KEYS includes **Button sounds** and **Touch vibration** preferences, saved on th
 
 The service worker caches an explicit list of app assets. To change cached runtime files or icons, bump the `CACHE` version in `sw.js` and update `ASSETS` as needed. Updates wait until existing app windows close so a running game is not interrupted. App navigation checks the network first and falls back to the installed cached page. Only the two app entry URLs receive this navigation fallback.
 
+On mobile in landscape, the display expands between the left D-pad and right action buttons. Select and Start stay beneath the action buttons; decorative headers are hidden to give games more space. The layout respects phone safe areas and the installed app viewport.
+
 Run `node --test tests/controls.test.cjs` to check the D-pad direction zones, sliding transitions, and overlapping input sources.
 
 The original generated icon and its built-in imagegen prompt are saved under `icons/`; favicon, Apple touch, and manifest PNG sizes are derived from that master.

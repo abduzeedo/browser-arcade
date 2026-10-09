@@ -1,4 +1,4 @@
-const CACHE='arcade-app-v2';
+const CACHE='arcade-app-v3';
 const ASSETS=[
   "./controls-core.js",
   "./",
